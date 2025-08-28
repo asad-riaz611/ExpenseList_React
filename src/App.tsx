@@ -1,12 +1,11 @@
-import React, { useState } from "react";
 import ExpenseList from "./expense-list/components/ExpenseList";
 import ExpenseFilter from "./expense-list/components/ExpenseFilter";
-import categories from "./expense-list/categories";
 import ExpenseForm from "./expense-list/components/ExpenseForm";
+import { useState } from "react";
 
 const App = () => {
   const [selectCategory, setSelectCategory] = useState("");
-  const [expense, setExpense] = useState([
+  const [expenses, setExpense] = useState([
     { id: 1, description: "Apple", amount: 21, category: "Groceries" },
     { id: 2, description: "Apple", amount: 22, category: "Groceries" },
     { id: 3, description: "Apple", amount: 23, category: "Utilities" },
@@ -14,14 +13,14 @@ const App = () => {
     { id: 5, description: "Apple", amount: 25, category: "Entertainment" },
   ]);
   const visibleExpenses = selectCategory
-    ? expense.filter((expense) => expense.category === selectCategory)
-    : expense;
+    ? expenses.filter((expense) => expense.category === selectCategory)
+    : expenses;
   return (
     <>
       <div className="mb-3">
         <ExpenseForm
           onSubmit={(e) =>
-            setExpense([...expense, { ...e, id: expense.length + 1 }])
+            setExpense([...expenses, { ...e, id: expenses.length + 1 }])
           }
         ></ExpenseForm>
       </div>
